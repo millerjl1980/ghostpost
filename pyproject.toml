@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "ghostpost"
+version = "0.1.0"
+description = ""
+authors = ["Justin Miller <indymiller@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+django = "^3.0.6"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
