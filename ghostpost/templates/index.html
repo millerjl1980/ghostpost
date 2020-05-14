@@ -5,8 +5,20 @@
 
 {% block content %}
     <h1>Welcome to the GhostPost!</h1>
-    
-    
+    <a href="{% url 'addpost' %}">Want to add a Boast or Roast?</a>
+    <br>
+    <a href="{% url 'boasts' %}">Want to see all the Boasts?</a>
+    <br>
+    <a href="{% url 'roasts' %}">Want to see all the Roasts?</a>
+
+    <h2>Here is a list of {{ note }}</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                {{ post }}
+            </li>
+        {% endfor %}
+    </ul>
 
      
 
