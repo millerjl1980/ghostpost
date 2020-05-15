@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Post Info{% endblock %}
+
+{% block content %}
+    {% if post.boast %}
+        <h1>Boast!</h1>
+    {% else %}
+        <h1>Roast!</h1>
+    {% endif %}
+    <p><strong>Content: </strong></p>
+    <p>{{post.content}}</p>
+    <p><strong>Submitted on: </strong>{{ post.sub_time}}</p>
+    <p><strong>Up-Votes: </strong>{{ post.up_vote}}</p>
+    <p><a href="{% url 'up_vote' post.id %}">Click to Up-Vote this!</a></p>
+    <p><strong>Down-Votes: </strong>{{ post.down_vote}}</p>
+    <p><a href="{% url 'down_vote' post.id %}">Click to Down-Vote this!</a></p>
+    
+
+
+    <a href="{% url 'home' %}">Back Home</a>
+    
+{% endblock %}

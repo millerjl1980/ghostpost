@@ -5,17 +5,26 @@
 
 {% block content %}
     <h1>Welcome to the GhostPost!</h1>
-    <a href="{% url 'addpost' %}">Want to add a Boast or Roast?</a>
+    <a href="{% url 'addpost' %}">Add a Boast or Roast?</a>
     <br>
     <a href="{% url 'boasts' %}">Want to see all the Boasts?</a>
     <br>
     <a href="{% url 'roasts' %}">Want to see all the Roasts?</a>
+    <br>
+    <a href="{% url 'home' %}">Want to see all the Boasts and Roasts?</a>
+    <br>
+    <a href="{% url 'ranked' %}">Want to see Boasts and Roasts by the hightest up votes?</a>
 
     <h2>Here is a list of {{ note }}</h2>
     <ul>
         {% for post in posts %}
             <li>
-                {{ post }}
+                <a href="{% url 'detail' post.id %}">
+                    {{ post }}
+                </a>
+                <p>Up Votes: {{ post.up_vote }}</p>
+                <p>Down Votes: {{ post.down_vote }}</p>
+                <!-- <p>Vote Score:  {{ post.score }}</p> -->
             </li>
         {% endfor %}
     </ul>
