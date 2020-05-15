@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, reverse
 from ghostpost.models import PostMessage
 from ghostpost.forms import AddPostForm
+from django.utils.crypto import get_random_string
 
 # Create your views here.
 def index(request):
@@ -26,11 +27,20 @@ def addpost(request):
     if request.method == 'POST':
         form = AddPostForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('home')
+            new_post = form.save()
+            new_post.refresh_from_db()
+            hidden_key = get_random_string(length=6)
+            new_post.hidden_key = hidden_key
+            new_post.save()
+            return HttpResponseRedirect(reverse('manage_post', kwargs={'post_hk': hidden_key}))
     else:
         form = AddPostForm()
     return render(request, 'addpost.html', {'form': form})
+
+def manage_post(request, post_hk):
+     post = get_object_or_404(PostMessage, hidden_key=post_hk)
+     return render(request, 'manage_post.html', {'post': post})
+
 
 def up_view(request, post_id):
     post = PostMessage.objects.get(id=post_id)

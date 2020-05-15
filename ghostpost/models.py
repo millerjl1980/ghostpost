@@ -10,6 +10,7 @@ class PostMessage(models.Model):
     down_vote = models.IntegerField(default=0)
     sub_time = models.DateTimeField(default=timezone.now)
     score = models.IntegerField(default=0)
+    hidden_key = models.CharField(max_length=6)
     
     # https://www.youtube.com/watch?v=jCzT9XFZ5bw
     @property
