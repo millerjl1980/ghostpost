@@ -41,6 +41,11 @@ def manage_post(request, post_hk):
      post = get_object_or_404(PostMessage, hidden_key=post_hk)
      return render(request, 'manage_post.html', {'post': post})
 
+def delete_post(request, post_hk):
+    post = PostMessage.objects.get(hidden_key=post_hk)
+    post.delete()
+    return HttpResponseRedirect(reverse('home'))
+
 
 def up_view(request, post_id):
     post = PostMessage.objects.get(id=post_id)

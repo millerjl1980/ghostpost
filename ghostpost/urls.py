@@ -10,5 +10,6 @@ urlpatterns = [
     path('addpost', views.addpost, name='addpost'),
     path('detail/<int:post_id>', views.detail, name='detail'),
     path('ranked', views.ranked_view, name='ranked'),
-    path('manage_post/<str:post_hk>', views.manage_post, name='manage_post')
+    path('manage_post/<str:post_hk>', views.manage_post, name='manage_post'),
+    path('delete/<str:post_hk>', views.delete_post, name='delete')
 ]
